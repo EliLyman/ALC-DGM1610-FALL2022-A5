@@ -4,23 +4,36 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public int key;
-    public int gem;
+    public bool hasFlag;
+    public bool placedFlag;
     
-    public void AddKey(int amount)
+    // Start is called before the first frame update
+    void Start()
     {
-        key += amount; //adds keys 
-        //if there was a UI to update it would go in this section
-        Debug.Log("Keys = "+ key); //tells how many keys are currently in inventory
+        hasFlag = false;
+        placedFlag = false;
     }
-    public void AddGem(int amount)
+
+    // Update is called once per frame
+    void Update()
     {
-        gem += amount;
-        Debug.Log("Gems ="+ gem);
+        if(placedFlag)
+        {
+            WinGame();
+        }
     }
-    //public void AddTrophy(int amount)
     
-        //trophy += amount;
-        //Debug.Log("Trophy ="+ trophy);
-    
+    public void PlacedFlag()
+    {
+        if(hasFlag)
+        {
+            placedFlag = true;
+            Debug.Log("Flag has been placed at home base");
+        }
+    }
+    public void WinGame()
+    {
+        Debug.Log("you did a win");
+        //Time.timeScale = 0;
+    }
 }
